@@ -1,0 +1,31 @@
+{% extends 'basic.html' %}
+
+{% block title %}
+Followers
+{% endblock %}
+
+{% block content %}
+	<div style="margin-left: 140px;margin-right: 0;">
+	<h1 style="margin: 5px;padding: 0;width: 100%"><i class="fas fa-user-friends"></i> Followers</h1>
+	</div>
+	<table class=" f_table table ">
+		<tbody>
+			{% for follower in obj %}
+			<div class="follower_username">
+			<tr>
+				<td style="width:50%;"><center>{{follower}}</center></td>
+			</div>
+			<form action="{% url 'profiles:profile-view' %}" method="post" style="width:30%;">
+			  {% csrf_token %}
+			  <td style="width:50%;">
+			  	<center>
+			  <input type="hidden" name="profile_id" value={{follower}}>
+			  <button type="submit" name="button">View Profile</button>
+			</center>
+			</td>
+			</form>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock content %}

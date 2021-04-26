@@ -1,0 +1,43 @@
+{% extends 'basic.html' %}
+
+{% block title %}
+All Users
+{% endblock title %}
+
+{% block content %}
+  {% if searched %}
+    {% if user_found %}
+      <h1 style="color:green;">User Not Found!</h1>
+    {% endif %}
+  {% endif %}
+  <div style="margin-left: 140px;margin-right: 0;">
+    <h1 style="margin: 5px;padding: 0;width: 100%"><i class="fas fa-user-friends"></i>All Users</h1>
+    <form action="{% url 'profiles:all-users-list-view' %}" method="post">
+      {% csrf_token %}
+      <div class="Search">
+        <input type="text" placeholder="Search for User" style="padding: 3px;" name="user">
+        <button type="submit" class="btns"><i class="fa fa-search" style="color:black;"></i></button>
+      </div>
+    </form>
+  </div>
+  <table class=" f_table table ">
+    <tbody>
+      {% for user in profiles %}
+      <div class="follower_username">
+      <tr>
+      	<td style="width:50%;"><center>{{user.user}}</center></td>
+      </div>
+      <form action="{% url 'profiles:specific-profile-view' %}" method="post">
+        {% csrf_token %}
+        <td style="width:50%;">
+        	<center>
+        <input type="hidden" name="profile_id" value={{user.slug}}>
+        <button type="submit" name="button">View Profile</button>
+      </center>
+      </td>
+      </form>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock content %}

@@ -1,0 +1,49 @@
+<div class="navbar">
+    <nav>
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="/" class="links" >Home</a>
+            {% if user.is_authenticated %}
+            <a href="{% url 'posts:main-post-view' %}" class="links">Posts</a>
+            <a href="{% url 'profiles:all-users-list-view' %}" class="links">All Users</a>
+            <a href="{% url 'profiles:my-profile-view' %}" class="links">My Profile</a>
+            <a href="{% url 'profiles:logout' %}" class="links">Log Out</a>
+            {% endif %}
+        </div>
+        <div class="left_nav">
+            <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+            <a href="/" class="links" style="margin-left:10px;">Home</a>
+            {% if user.is_authenticated %}
+            <a href="{% url 'posts:main-post-view' %}" class="links" style="margin-left:20px;">Posts</a>
+            <a href="{% url 'profiles:all-users-list-view' %}" class="links">All Users</a>
+            {% endif %}
+        </div>
+        <div class="right_nav">
+          {% if user.is_authenticated %}
+          <form action="{% url 'posts:search-book' %}" method="post">
+            {% csrf_token %}
+            <div class="Search">
+              <input type="text" placeholder="Search for book" style="padding: 1px;" name="book_name">
+              <button class="search_btn">Search</button>
+            </div>
+          </form>
+            <a href="{% url 'profiles:my-profile-view' %}" class="links" style="margin-right: 20px;">My Profile</a>
+        {% else %}
+            <a href="{% url 'profiles:login' %}" class="links" style="margin-right: 20px;">Login</a>
+            <a href="{% url 'profiles:register' %}" class="links" style="margin-right: 20px;">Sign Up</a>
+        {% endif %}
+        {% if user.is_authenticated %}
+            <a href="{% url 'profiles:logout' %}" class="links">Log Out</a>
+        {% endif %}
+        </div>
+    </nav>
+</div>
+<script>
+    function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+</script>

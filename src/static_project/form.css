@@ -1,0 +1,129 @@
+body {
+    background-image: url("image/1.jpg") !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    background-attachment: fixed !important;
+}
+h1{
+  font-family: 'Georgia', monospace;
+  color:black;
+  text-align: center;
+}
+.book {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin-top:10px;
+  margin-left: 40%;
+}
+.cover {
+  background-color: #7b1fa2;
+  transform-origin: left;
+  transform: rotateY(0deg);
+  width: 60%;
+  height: 95%;
+}
+.page {
+  top: 0.25rem;
+  left: 0.25rem;
+  background-color: #e9e6c4;
+  transform-origin: left;
+  transform: rotateY(0deg);
+  width: 59%;
+  height: 94%;
+  text-align: left;
+  color: #777;
+  font-family: monospace;
+}
+.page::before, .page::after {
+  padding-bottom: 1rem;
+}
+.cover, .page {
+  position: absolute;
+  padding: 1rem;
+  border-radius: 5px 0 0 5px;
+  box-shadow: inset 3px 0px 20px rgba(0, 0, 0, 0.2),
+    0px 0px 15px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+.page
+{
+  padding: 40px;
+  -webkit-box-shadow:
+  inset #e9e6c4 0 0 0 5px,
+    inset black 0 0 0 10px,
+    inset #e9e6c4 0 0 0 12px,
+    inset black 0 0 0 15px;
+  box-shadow:
+  inset #e9e6c4 0 0 0 5px,
+    inset black 0 0 0 10px,
+    inset #e9e6c4 0 0 0 12px,
+    inset black 0 0 0 15px;
+}
+.cover.turn {
+  animation: bookCover 3s forwards;
+}
+.page.turn {
+  animation: bookOpen 3s forwards;
+}
+.page:nth-of-type(2) {
+  animation: bookOpen180deg 3s forwards;
+  animation-delay: 0.05s;
+}
+.page:nth-of-type(3) {
+  animation: bookOpen55deg 3s forwards;
+  animation-delay: 0.33s
+}
+.page:nth-of-type(4) {
+  animation: bookOpen30deg 3s forwards;
+  animation-delay: 0.66s;
+}
+@keyframes bookOpen {
+  30% { z-index: 999 }
+  100% {  transform: rotateY(0deg);
+    z-index: 999;}
+}
+@keyframes bookCover {
+  30% { z-index: 999 }
+  100% {  transform: rotateY(180deg);
+    z-index: 1;}
+}
+@keyframes bookOpen180deg {
+  30% { z-index: 999 }
+  100% {  transform: rotateY(180deg);
+    z-index: 999;}
+}
+
+@keyframes bookOpen55deg {
+  30% { z-index: 999 }
+  100% {  transform: rotateY(-145deg);
+    z-index: 999;}
+}
+@keyframes bookOpen30deg {
+  50% { z-index: 999 }
+  100% {  transform: rotateY(-120deg);
+    z-index: 999;}
+}
+
+@media screen and (max-width: 1200px){
+
+  .book
+  {
+    margin-left: 50%;
+  }
+
+  .cover{
+    width:75%;
+    height:97%;
+  }
+
+  .page
+  {
+    width:74%;
+    height:96%
+  }
+
+}

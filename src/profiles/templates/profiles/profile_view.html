@@ -1,0 +1,104 @@
+{% extends 'basic.html' %}
+
+{% block title %}
+Profile
+{% endblock %}
+
+{% block content %}
+
+<div class="profile">
+  <h3 style="width:15%;display: inline-flex;">{{obj.user}}</h3>
+  <form action="{% url 'profiles:follow-unfollow-view' %}" method="post" style="display: inline-flex;">
+    {% csrf_token %}
+    <input type="hidden" name="profile_id" value={{obj.pk}}>
+    <button type="submit" name="button" style="font-size: 25px;">
+      {% if obj.user in profile.get_you_follow %}
+      Unfollow
+      {% else %}
+      Follow
+      {% endif %}
+    </button>
+  </form>
+  <div class="ui grid">
+  <div class="row">
+    <div class="six wide column">
+      <img class="ui medium rounded image" src="{{obj.avatar.url}}" style="width:130px;height:130px;">
+    </div>
+    <div cstyle="width: 50%;margin-left: 15%;display: inline-flex;">
+      <table class="table" style="display: inline-flex;margin-top: 10px;height: 700px;">
+        <tbody style="width:50%;">
+          <tr>
+            <th style="width: 20%;">Attribute</th>
+            <th style="width: 20%;">Data</th>
+          </tr>
+          <tr>
+            <td>username</td>
+            <td>{{obj.user}}</td>
+          </tr>
+          <tr>
+            <td>firstname</td>
+            <td>{{obj.first_name}}</td>
+          </tr>
+          <tr>
+            <td>lastname</td>
+            <td>{{obj.last_name}}</td>
+          </tr>
+          <tr>
+            <td>Bio</td>
+            <td>{{obj.bio}}</td>
+          </tr>
+          <tr>
+            <td>Number of followers</td>
+            <td>{{obj.get_followers_no}}</td>
+          </tr>
+          <tr>
+            <td>Followers</td>
+            <td>
+              <ul>
+              {% for follower in obj.get_followers %}
+              <li>{{follower}}</li>
+              {% endfor %}
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>You Follow</td>
+            <td>{{obj.get_you_follow_no}}</td>
+          </tr>
+          {% if obj.get_you_follow_no %}
+          <tr>
+            <td>Following</td>
+            <td>
+              <ul>
+              {% for following in obj.get_you_follow %}
+              <li>{{following}}</li>
+              {% endfor %}
+              </ul>
+            </td>
+          </tr>
+          {% endif %}
+          <tr>
+            <td>Number of posts</td>
+            <td>{{obj.get_posts_num}}</td>
+          </tr>
+          <tr>
+            <td>Number of likes given</td>
+            <td>{{obj.get_likes_num}}</td>
+          </tr>
+          <tr>
+            <td>Number of likes received to his/her post</td>
+            <td>{{obj.get_likes_received_post_no}}</td>
+          </tr>
+          <tr>
+            <td>Number of likes received to his/her reviews</td>
+            <td>{{obj.get_likes_received_review_no}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </div>
+</div>
+
+
+{% endblock content %}

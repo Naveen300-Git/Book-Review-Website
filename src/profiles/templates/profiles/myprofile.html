@@ -1,0 +1,121 @@
+{% extends 'basic.html' %}
+
+{% block title %}
+My Profile
+{% endblock %}
+
+{% block content %}
+
+
+<div class="profile">
+  {% if confirm %}
+  <div class="green_msg">Updated!</div>
+  {% endif %}
+  <i><h2>{{obj.user}}</h2></i>
+  <div class="ui grid">
+  <div class="row">
+    <div class="profile_image">
+      <img class="ui medium rounded image" src="{{obj.avatar.url}}" style="width:130px;height:130px;">
+      <div class="row mt-5">
+        <a href="#update_prof">
+      <button class='upd_btn' id='modal-btn' onclick="Update_btn_click()">Update</button>
+    </a>
+      </div>
+    </div>
+    <div class="profile_image_side">
+      <table class="table">
+        <tbody>
+          <tr>
+            <th style='width:250px;'>Attribute</th>
+            <th>Data</th>
+          </tr>
+          <tr>
+            <td>Username</td>
+            <td>{{obj.user}}</td>
+          </tr>
+          <tr>
+            <td>Firstname</td>
+            <td>{{obj.first_name}}</td>
+          </tr>
+          <tr>
+            <td>Lastname</td>
+            <td>{{obj.last_name}}</td>
+          </tr>
+          <tr>
+            <td>Bio</td>
+            <td>{{obj.bio}}</td>
+          </tr>
+          <tr>
+            <td>Followers</td>
+            <td>
+              {% if obj.get_followers_no %}
+              {{obj.get_followers_no}}
+              <a href="{% url 'profiles:my-follower-list-view' %}"><i>(View)</i></a>
+              {% else %}
+              {{obj.get_followers_no}}
+              {% endif %}
+            </td>
+          </tr>
+          <tr>
+            <td>Following</td>
+            <td>
+              {% if obj.get_you_follow_no %}
+              {{obj.get_you_follow_no}}
+              <a href="{% url 'profiles:you-follow-list-view' %}"><i>(View)</i></a>
+              {% else %}
+              {{obj.get_you_follow_no}}
+              {% endif %}
+            </td>
+          </tr>
+          <tr>
+            <td>Number of posts</td>
+            <td>{{obj.get_posts_num}}</td>
+          </tr>
+          <tr>
+            <td>Number of likes given</td>
+            <td>{{obj.get_likes_num}}</td>
+          </tr>
+          <tr>
+            <td>Likes received to my post</td>
+            <td>{{obj.get_likes_received_post_no}}</td>
+          </tr>
+          <tr>
+            <td>Likes received to my reviews</td>
+            <td>{{obj.get_likes_received_review_no}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </div>
+</div>
+<hr>
+<!-- MODAL -->
+<div class="updateform" id="update" style="margin-left: 21px;overflow: hidden;">
+  <i class="close icon"></i>
+  <div class="header" id="update_prof" style="font-size: 40px;font-weight: bold;">
+    Update :
+  </div>
+  <div class="image content">
+    <div class="ui medium image" >
+      <img src="{{obj.avatar.url}}" style="width:130px;height:130px;">
+    </div>
+    <div class="description">
+      <div class="header" style="font-size: 25px;font-weight: bold;">Provide some additional/newest info about you </div>
+      <form action="" method="POST" class="info_form" enctype='multipart/form-data' style="padding: 15px;">
+        {% csrf_token %}
+        {{form.as_p}}
+  <div class="actions" style="">
+    <button type='submit' class="ui positive right labeled icon button" style="margin:10px;font-size: 31px;">
+      Update
+      <i class="checkmark icon"></i>
+    </button>
+  </div>
+        </form>
+      </div>
+    </div>
+
+</div>
+
+
+{% endblock content %}

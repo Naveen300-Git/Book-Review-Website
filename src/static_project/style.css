@@ -1,0 +1,288 @@
+html {
+  height: 100vh;
+}
+h1{
+	margin-left: 4.5%;
+}
+body {
+    background-image: url("image/1.jpg") !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    background-attachment: fixed !important;
+    height : 100%;
+}
+.post_review{
+	width:50%;
+	background-color: aliceblue;
+	border:3px solid black;
+
+	margin-bottom: 2%;
+	margin-left: 4.5%;
+	margin-top:1%;
+	box-shadow: 2px 2px 2px #000;
+}
+button{
+	padding: 2px;
+	border: 1px solid black;
+	background-color: lavender;
+	border-radius: 2.9px;
+}
+
+
+.newpost_btn{
+	float:right;
+	width: 20%;
+	height: auto;
+	border-radius: 5px;
+}
+
+
+.likes{
+	margin-left:0.5%;
+	font-weight: bold;
+	font-size:140%;
+	color:sienna;
+	font-family: 'Courier New', monospace;
+}
+.review_text{
+	font-size:120%;
+	font-family: 'Courier New', monospace;
+	font-weight: bold;
+}
+input[type=text]{
+	border: solid black 1px;
+}
+button:hover{
+	background-color: #65328f73;
+	transition: 0.5s ease;
+}
+.book_name{
+	font-size: 160%;
+	font-weight: bold;
+}
+
+.post{
+	background-color: lightblue;
+	margin-top: 2%;
+	margin: 2%;
+	padding: 1.5%;
+	border:2px solid black;
+	box-shadow: 2px 2px 2px #000;
+}
+
+.reviews{
+	background-color: aliceblue;
+	margin:2%;
+	margin-left: 3%;
+}
+.post_new_review{
+	margin:2%;
+	margin-left: 3%;
+}
+.post_a_new_book{
+	width: 40%;
+	margin-bottom: 2%;
+	margin-left: 4.5%;
+	margin-top:3%;
+}
+.newpost_indiv{
+	margin: 2%;
+	font-size: 120%;
+	color:black;
+	font-weight: bold;
+}
+.newpost{
+	padding: 0.5%;
+	width: 40%;
+	border:3px solid black;
+	background-color: aliceblue;
+width: 40%;
+margin-bottom: 2%;
+margin-left: 4.5%;
+box-shadow: 2px 2px 2px #000;
+}
+
+
+.newpost:hover{
+	box-shadow: 4px 4px 4px #000;
+	transition: 0.2s ease;
+}
+.post_review:hover{
+	box-shadow: 4px 4px 4px #000;
+	transition: 0.2s ease;
+}
+.post:hover{
+	box-shadow: 4px 4px 4px #000;
+	transition: 0.2s ease;
+}
+.nav {
+    border-radius: 0px !important;
+    padding: 10px 0 10px 0 !important;
+    background-color: #396afc !important;
+}
+
+.mb-7 {
+    margin-bottom: 7px !important;
+}
+
+.mb-5 {
+    margin-top: 5px !important;
+}
+
+.mymodal {
+    height: 300px !important;
+    top: 200px !important;
+    font-size: 20px !important;
+}
+
+footer
+{
+	background-color:#5f9ea0cc;
+}
+footer a,footer h4,footer .copyright{
+	margin-left: 15px;
+	margin: 7px;
+}
+.footer
+{
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer a
+{
+  display:inline-block;
+  padding:2px;
+  width:auto;
+  color:#FAFAFA;
+}
+
+.fa {
+  padding: 3px;
+  font-size: auto;
+  width: auto;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+}
+
+.fa:hover {
+  opacity: 0.7;
+}
+
+.footer div
+{
+  display:inline-block;
+  width:40%;
+}
+.first{
+   position: fixed;
+   left: 0;
+   bottom: 0;
+}
+.foot a:hover
+{
+  opacity: 0.3;
+}
+
+#update{
+	/*display: none;*/
+}
+.follower_username
+{
+	font-size: 20px;
+}
+.info_form{
+	width: 70%;
+	border: 2px solid #00000066;
+}
+.info_form:hover{
+	box-shadow: 10px 10px 10px #00000066;
+	transition: 0.5s ease;
+}
+p{
+	margin:12px;
+	font-size: 20px;
+}
+table a{
+	color:#006b6e;
+	font-size: 14px;
+}
+table a:hover{
+	color:#34568B;
+	font-size: 16px;
+	font-weight: bold;
+	transition: 0.8s ease;
+}
+
+.Search .btns {
+  background-color: green;
+  font-size:17px;
+  padding:0px 5px;
+  border: none;
+  cursor: pointer;
+  padding-bottom: 2px
+
+}
+
+.btn{
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.post_indiv button
+{
+  border:none;
+  padding:0;
+  background-color: transparent;
+}
+
+.post_indiv button:hover
+{
+  border:none;
+  padding:0;
+  background-color: transparent;
+}
+
+.fa_change {
+  color:black;
+  font-size: 40px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.fa_change:hover {
+  color: darkblue;
+}
+
+.review_text p
+{
+  font-size:20px;
+}
+
+@media screen and (max-width: 1000px) {
+
+	.newpost
+	{
+		width:90%;
+	}
+
+	.post_review
+	{
+		width:90%;
+	}
+
+  .content .medium
+  {
+    display:block;
+    width:100%;
+  }
+  .content .description
+  {
+    display:block;
+  }
+
+}

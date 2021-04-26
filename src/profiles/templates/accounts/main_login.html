@@ -1,0 +1,76 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Login Form</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href={% static 'form.css' %}>
+<link rel="stylesheet" href={% static 'style_login.css' %}>
+
+</head>
+<body >
+
+	<div class="book" style="min-height: 580px;">
+		<div class="page turn">
+  		<form method="post" name="form" onsubmit="return login(this);">
+				{% csrf_token %}
+    		<div class="imgcontainer">
+    			<h1 style="font-style: italic;font-family: all;color:#9c27b0; text-align: center;">LOGIN</h1>
+    		</div>
+
+    		<div class="container">
+    			<label for="username"><b>Username</b></label>
+      		<input type="text" placeholder="Enter Username" name="username" id="username">
+      		<label for="password"><b>Password</b></label>
+		      <input type="password" placeholder="Enter Password" name="password" id="password">
+		      <input type="checkbox" onclick="showpsw()">Show Password
+		      <button type="submit">Login</button>
+    		</div>
+
+		    <div class="container" style="background-color:#f1f1f1">
+		      <a href='/' style="text-decoration: none;color:white;"><button type="button" class="cancelbtn">Cancel</button></a>
+		      <span class="signup">Create a new account?<a href="{% url 'profiles:register' %}" >Sign Up</a></span>
+		    </div>
+			</form>
+		</div>
+  	<div class="page turn"><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr></div>
+  	<div class="page turn"><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr></div>
+  	<div class="page turn"><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr></div>
+  	<div class="cover"></div>
+  	<div class="cover turn"></div>
+</div>
+
+<script>
+function login()
+    {
+        var username = form.username.value;
+        if(!username)
+        {
+            alert("Error: Enter the username!");
+            form.username.focus();
+            return false;
+        }
+        if(!form.password.value)
+        {
+            alert("Error: Enter the password!");
+            form.password.focus();
+            return false;
+        }
+    }
+
+    function showpsw()
+  {
+  var x = document.getElementById("password");
+  if (x.type === "password")
+  {
+    x.type = "text";
+  }
+  else
+  {
+    x.type = "password";
+  }
+}
+</script>
+</body>

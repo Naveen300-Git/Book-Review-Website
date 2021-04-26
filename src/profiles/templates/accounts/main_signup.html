@@ -1,0 +1,115 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Sign Up Form</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href={% static 'form.css' %}>
+<link rel="stylesheet" href={% static 'style_login.css' %}>
+</head>
+<body>
+
+    <div class="book" style="min-height: 650px;">
+    <div class="page turn">
+      {% if u_already_exists %}
+      alert("Username already exists!!")
+      {% endif %}
+      <form method="post" name="signup" onsubmit="return checkForm(this);">
+        {% csrf_token %}
+        <div class="imgcontainer">
+            <h1 style="font-style: italic;font-family: all;color:#9c27b0; text-align: center;">SIGN UP</h1>
+        </div>
+
+    <div class="container">
+        <label for="username"><b>Username</b></label>
+        <input type="text" placeholder="Enter Username" name="username" id="username" value={{uname}}>
+
+
+        <label for="password_1"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="password_1" id="password_1"  required>
+
+        <label for="password_2"><b>Repeat Password</b></label>
+        <input type="password" placeholder="Confirm Password" name="password_2" id="password_2" required>
+
+        <input type="checkbox" onclick="showpsw()">Show Password
+
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+        <button type="submit" onclick="return confirm('Are you sure u want to submit?')">Sign Up</button>
+        <a href="/" style="text-decoration: none;color:white;"><button type="button" class="cancelbtn">Cancel</button></a>
+        <span class="psw">Already have an account?<a href="{% url 'profiles:login' %}" >Login</a></span>
+    </div>
+</form>
+  </div>
+    <div class="page turn"><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr></div>
+    <div class="page turn"><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr></div>
+    <div class="page turn"><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr></div>
+  <div class="cover"></div>
+  <div class="cover turn"></div>
+</div>
+
+
+<script>
+
+  function checkPassword(str)
+  {
+    var re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+    return re.test(str);
+  }
+
+  function checkForm(form)
+  {
+    if(form.username.value == "") {
+      alert("Error: Username cannot be blank!");
+      form.username.focus();
+      return false;
+    }
+
+    re = /^\w+$/;
+    if(!re.test(form.username.value)) {
+      alert("Error: Username must contain only letters, numbers and underscores!");
+      form.username.focus();
+      return false;
+    }
+
+
+    if(form.password_1.value != "" && form.password_1.value == form.password_2.value)
+    {
+      if(!checkPassword(form.password_1.value)) {
+        alert("The password you have entered is not valid!\nPassword must contain:\nAtleast one lowercase letter(a..z)\nAtleast one uppercase letter(A..Z) \nAtleast one number(0..9)\nAtleast 6 characters");
+        form.password_1.focus();
+        return false;
+      }
+    }
+    else
+    {
+      alert("Error: Please check that you've entered and confirmed your password!");
+      form.password_1.focus();
+      return false;
+    }
+
+    alert("All the entered credentials are valid.Thank You!");
+    return true;
+  }
+
+  function showpsw()
+  {
+  var x = document.getElementById("password_1");
+  var y = document.getElementById("password_2");
+  if (x.type === "password" && y.type === "password")
+  {
+    x.type = "text";
+    y.type = "text";
+  }
+  else
+  {
+    x.type = "password";
+    y.type = "password";
+  }
+}
+
+</script>
+</body>

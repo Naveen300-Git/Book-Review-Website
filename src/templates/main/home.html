@@ -1,0 +1,27 @@
+{% extends 'basic.html' %}
+
+{% block title %}
+home
+{% endblock title %}
+
+{% block content %}
+  {% if not user.is_authenticated %}
+  <pre>
+  <h1>You are not Logged in,Want to access the website?</h1>
+  <h2>If you have an account please <a href="{% url 'profiles:login' %}">login</a></h2>
+  <h2>No account? No problem , just <a href="{% url 'profiles:register' %}">signup</a> in a single step</h2>
+  {% else %}
+  <div class="Welcome" style='margin:20px;padding:20px;'>
+  <span style="font-size:300%;">Welcome {{user}}!!!<br>Happy to see you here.</span>
+  </div>
+  {% endif %}
+  </pre>
+{% endblock content %}
+
+{% block scripts %}
+<script>
+$(document).ready(function(){
+    console.log('working from home html');
+});
+</script>
+{% endblock scripts %}

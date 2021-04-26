@@ -1,0 +1,101 @@
+{% extends 'basic.html' %}
+{% load static %}
+
+{% block title %}
+searched-book
+{% endblock title %}
+
+{% block content %}
+
+<h1 style=";">Book & Reviews</h1>
+<div class="post_review">
+  <div class="post">
+    <div class="post_indiv">
+      <div class="book_name">{{posts.book_name}}</div>
+    </div>
+    <form action="{% url 'posts:like-post-view' %}" method="POST">
+      {% csrf_token %}
+      <div class="post_indiv">
+        <input type="hidden" name="post_id1" value={{posts.id}}>
+        <button type="submit">
+          <div class='btn'>
+            {% if profile not in posts.liked.all %}
+              <i class="fa fa-thumbs-up fa_change"></i>
+            {% else %}
+              <i class="fa fa-thumbs-down fa_change"></i>
+            {% endif %}
+          </div>
+        </button>
+        <span class="likes">{{posts.liked.all.count}}</span>
+      </div>
+    </form>
+    <div class="post_indiv">
+      {% if profile.user.is_superuser %}
+      <form action="{% url 'posts:delete-post-view' %}" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="post_id4" value={{posts.id}}>
+        <button type="submit">
+          <div class='btn'>Delete book</div>
+        </button>
+      </form>
+      {% endif %}
+    </div>
+  </div>
+
+  {% for obj2 in reviews %}
+    <div class="reviews">
+      {% ifequal obj2.post_id posts.id %}
+        <div class="review_text">
+          <form action="{% url 'profiles:specific-profile-view' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="profile_id" value={{obj2.user.slug}}>
+            <button style="border:none;font-size:18px;" onclick="submit">
+              <b>{{obj2.user.user}}</b>
+            </button>
+          </form>
+          <p style="padding-left: 20px;">{{obj2.body}}</p>
+        </div>
+        <form action="{% url 'posts:like-review-view' %}" method="POST" class="post_indiv">
+          {% csrf_token %}
+          <input type="hidden" name="post_id3" value={{posts.id}}>
+          <input type="hidden" name="review_id" value={{obj2.id}}>
+          <button type="submit">
+            <div class='btn'>
+              {% if profile not in obj2.liked.all %}
+                <i class="fa fa-thumbs-up fa_change" style="font-size: 25px;padding-left: 20px;"></i>
+              {% else %}
+                <i class="fa fa-thumbs-down fa_change" style="font-size: 25px;padding-left: 20px;"></i>
+              {% endif %}
+            </div>
+          </button>
+           <span class="likes"> {{obj2.liked.all.count}}</span>
+        </form>
+
+        {% ifequal profile.slug obj2.user.slug %}
+        <form action="{% url 'posts:delete-review-view' %}" method="POST" class="post_indiv">
+          {% csrf_token %}
+          <input type="hidden" name="post_id" value={{posts.id}}>
+          <input type="hidden" name="review_id" value={{obj2.id}}>
+          <button type="submit">
+            <div class='btn'>Delete Review</div>
+          </button>
+        </form>
+        {% endifequal %}
+      {% endifequal %}
+    </div>
+  {% endfor %}
+
+  <div class="post_new_review">
+    <form action="{% url 'posts:create-review-view' %}" method="POST">
+      {% csrf_token %}
+      <input type="text" name="review_body" placeholder="Add review!!!" style="padding:5px;border-radius:5%;">
+      <input type="hidden" name="post_id2" value={{posts.id}}>
+      <button type="submit">
+        <div class='btn' style="padding:3px;">Post review</div>
+      </button>
+    </form>
+  </div>
+</div>
+<div style="margin: 2%;"></div>
+
+{% endblock content %}

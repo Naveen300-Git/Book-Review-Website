@@ -1,0 +1,58 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type='text/css' href={% static 'home.css' %}>
+  <link rel="stylesheet" type='text/css' href={% static 'style.css' %}>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+  <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+}
+
+
+a
+{
+  text-decoration: none;
+}
+
+  </style>
+{% block styles %}
+{% endblock styles %}
+<title>book - {% block title %}{% endblock title %}</title>
+</head>
+<body style="overflow-x:hidden;">
+  {% include 'main/navbar.html' %}
+
+  <div class="content" style="margin:10px;min-height: 70%">
+    {% block content %}
+    {% endblock content %}
+  </div>
+
+{% include 'main/footer.html' %}
+
+
+</body>
+<script type="text/javascript" >
+  function Update_btn_click() {
+    document.getElementById("update").style.display = "block";
+}
+</script>
+
+<script>
+{% block scripts %}
+{% endblock scripts %}
+</script>
+
+</html>
