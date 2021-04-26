@@ -1,5 +1,8 @@
 # IT254_miniproject
-Book Review Website with identifying expert review using Linear Regression
+Book Review Website
+
+ with identifying expert review using Linear Regression
+
 
 Project members 
 
